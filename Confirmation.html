@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Beauty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose-gold: #b76e79;
+            --deep-plum: #4a1942;
+            --soft-pink: #fdf0f4;
+            --cream: #faf7f5;
+            --charcoal: #2d2d2d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+        }
+        
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem 5%;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--rose-gold);
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .confirmation-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 5%;
+            text-align: center;
+        }
+        
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: #4caf50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+            animation: scaleIn 0.5s ease;
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--deep-plum);
+            margin-bottom: 1rem;
+        }
+        
+        .order-number {
+            font-size: 1.2rem;
+            color: var(--rose-gold);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        
+        .confirmation-message {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--deep-plum);
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-box {
+            background: var(--soft-pink);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+        
+        .info-box h3 {
+            font-size: 0.9rem;
+            color: var(--rose-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+        }
+        
+        .info-box p {
+            margin-bottom: 0.3rem;
+            line-height: 1.6;
+        }
+        
+        .order-items {
+            margin-top: 2rem;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--deep-plum);
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #eee;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--rose-gold);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--deep-plum);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--rose-gold);
+            border: 2px solid var(--rose-gold);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--rose-gold);
+            color: white;
+        }
+        
+        .email-notice {
+            background: var(--soft-pink);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Beauty</div>
+    </header>
+
+    <div class="confirmation-container">
+        <div class="success-icon">✓</div>
+        <h1>Thank You for Your Order!</h1>
+        <div class="order-number" id="orderNumber">Order #12345</div>
+        
+        <div class="confirmation-message">
+            <h2 class="section-title">Order Details</h2>
+            
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>Shipping Address</h3>
+                    <p id="shippingName"></p>
+                    <p id="shippingAddress"></p>
+                    <p id="shippingCity"></p>
+                </div>
+                
+                <div class="info-box">
+                    <h3>Contact Information</h3>
+                    <p id="contactEmail"></p>
+                    <p id="contactPhone"></p>
+                </div>
+            </div>
+            
+            <div class="order-items">
+                <h3 class="section-title">Items Ordered</h3>
+                <div id="itemsList"></div>
+                <div class="order-summary-total">
+                    <span>Total Paid</span>
+                    <span id="totalPaid">$0.00</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="email-notice">
+            <strong>📧 Confirmation email sent!</strong><br>
+            We've sent a confirmation email with your order details and tracking information.
+        </div>
+        
+        <div class="action-buttons">
+            <a href="products.html" class="btn btn-primary">Continue Shopping</a>
+            <a href="index.html" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        const orderData = JSON.parse(localStorage.getItem('lastOrder'));
+        
+        if (!orderData) {
+            alert('No order found!');
+            window.location.href = 'index.html';
+        } else {
+            // Generate random order number
+            const orderNum = Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('orderNumber').textContent = `Order #${orderNum}`;
+            
+            // Display shipping info
+            document.getElementById('shippingName').textContent = 
+                `${orderData.firstName} ${orderData.lastName}`;
+            document.getElementById('shippingAddress').textContent = orderData.address;
+            document.getElementById('shippingCity').textContent = 
+                `${orderData.city}, ${orderData.state} ${orderData.zipCode}`;
+            
+            // Display contact info
+            document.getElementById('contactEmail').textContent = orderData.email;
+            document.getElementById('contactPhone').textContent = orderData.phone;
+            
+            // Display order items
+            const itemsList = document.getElementById('itemsList');
+            const subtotal = orderData.items.reduce((sum, item) => 
+                sum + (item.price * item.quantity), 0);
+            const shipping = subtotal > 50 ? 0 : 10;
+            const tax = subtotal * 0.08;
+            const total = subtotal + shipping + tax;
+            
+            itemsList.innerHTML = orderData.items.map(item => `
+                <div class="order-item">
+                    <div>
+                        <strong>${item.name}</strong><br>
+                        <span style="color: #666; font-size: 0.9rem;">Qty: ${item.quantity}</span>
+                    </div>
+                    <div>$${(item.price * item.quantity).toFixed(2)}</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('totalPaid').textContent = `$${total.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
